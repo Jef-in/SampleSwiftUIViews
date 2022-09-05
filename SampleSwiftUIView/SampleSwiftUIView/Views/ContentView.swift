@@ -13,7 +13,7 @@ struct ContentView: View {
             MapView()
                 .frame(height: 200.0)
                 .edgesIgnoringSafeArea(.top)
-            
+
             CircleImageView()
                 .offset(y: -100.0)
                 .padding(.bottom, -100.0)
