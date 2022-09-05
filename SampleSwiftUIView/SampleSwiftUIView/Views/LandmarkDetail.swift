@@ -8,34 +8,41 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    var landmark: Landmark
     var body: some View {
+        ScrollView {
         VStack {
-            MapView()
-                .frame(height: 200.0)
+            MapView(coordinate: landmark.locationCoordinate)
+                .frame(height: 300.0)
                 .edgesIgnoringSafeArea(.top)
 
-            CircleImageView()
+            CircleImageView(image: landmark.image)
                 .offset(y: -100.0)
                 .padding(.bottom, -100.0)
             VStack(alignment: .leading) {
-            Text("Louvre Museum")
+                Text(landmark.name)
                 .font(.title)
                 HStack {
-                    Text("Art Museum")
+                    Text(landmark.park)
                     Spacer()
-                    Text("Paris, France")
+                    Text("\(landmark.city), \(landmark.state)")
                 }
                 .font(.subheadline)
                 .foregroundColor(.gray)
+                
+                Divider()
+                Text(landmark.description)
             }
             .padding()
         }
-        Spacer()
     }
+    .navigationTitle(landmark.name)
+    .navigationBarTitleDisplayMode(.inline)
+ }
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetail()
+        LandmarkDetail(landmark: landmarks[0])
     }
 }
